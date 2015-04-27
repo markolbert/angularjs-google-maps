@@ -202,8 +202,10 @@ var ngMap = angular.module('ngMap', []);
         return function(event) {
           function index(obj,i) {return obj[i];}
           var f = funcName.split('.').reduce(index, scope);
-          f.apply(this, [event].concat(args));
-          scope.$apply();
+          if (f != null) {
+              f.apply(this, [event].concat(args));
+              scope.$apply();
+          }
         }
       }
 
